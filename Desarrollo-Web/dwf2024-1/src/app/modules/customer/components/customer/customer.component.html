@@ -1,0 +1,216 @@
+<div class="card">
+  <div class="card-body">
+    <!-- TITULO VISTA -->
+    <div class="title">
+      <h1> Listado de Clientes </h1>
+    </div>
+
+    <!-- BOTON AGREGAR -->
+    <div class="botonDer">
+      <button type="button" class="btn btn-primary btn-new" (click)="showModalForm()">
+        <i class="ph ph-plus-circle icon-text-button"></i>
+        <p class="new-cat"> Nuevo cliente </p>
+      </button>
+    </div>
+
+    <!-- BUSCADOR -->
+    <div class="input-group mb-3">
+      <input #customerRFCInput type="text" class="form-control" placeholder="Buscar por rfc ..." id="Buscar" aria-describedby="basic-addon2">
+      <span (click)="cleanSearch(customerRFCInput)" class="input-group-text">&times;</span>
+      <div class="input-group-append cursor-pointer">
+        <button (click)="getCustomer(customerRFCInput.value)" class="btn btn-outline-secondary" type="button">Buscar</button>
+      </div>
+    </div> 
+
+    <!-- TABLA CLIENTE -->
+    <table class="table">
+      <caption>
+        Clientes
+      </caption>
+
+      <!-- ENCABEZADO -->
+      <thead>
+        <tr class="table-primary">
+          <th scope="col" class="id">Id<i [appSort]="customers" data-order="asc" data-name="customer_id" class="cursor-pointer ph-fill ph-caret-up-down"></i> </th>
+          <th scope="col">Nombre <i [appSort]="customers" data-order="asc" data-name="name" class="cursor-pointer ph-fill ph-caret-up-down"></i> </th>
+          <th scope="col">RFC <i [appSort]="customers" data-order="asc" data-name="rfc" class="cursor-pointer ph-fill ph-caret-up-down"></i> </th>
+          <th scope="col">Estatus
+          <i *ngIf="sortStatus" [appSort]="customers" data-order="asc" data-name="status" class="cursor-pointer ph-fill ph-caret-up-down"></i>
+          <button class="dropdown-button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true"
+                aria-expanded="false">              
+                <i class="ph-fill ph-caret-down"></i>
+              </button>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item edit-item" (click)="getCustomers()">
+                  <i class="ph ph-eye icon-text-ul"></i><p class="item-txt">Todo</p>
+                </a>
+                <a class="dropdown-item edit-item" (click)="getActiveCustomers()">
+                  <i class="ph ph-check-circle icon-text-ul"></i><p class="item-txt">Activo</p>
+                </a>
+                <a class="dropdown-item edit-item" (click)="getInactiveCustomers()">
+                  <i class="ph ph-x-circle icon-text-ul"></i><p class="item-txt">Inactivo</p>
+                </a>
+              </div>
+            </th>
+          <th scope="col">Más</th>
+        </tr>
+      </thead>
+
+      <!-- CUERPO -->
+      <tbody>
+        <tr *ngFor="let customer of customers | paginate: { itemsPerPage: 10, currentPage: currentPage, totalItems: customers.length}">
+          <td class="id">{{ customer.customer_id }}</td>
+          <td>{{ customer.name + " " + customer.surname }}</td>
+          <td>{{ customer.rfc }}</td>
+          <td>
+            <div class="td-status"
+              [ngClass]="{'td-status-enable': customer.status == 1, 'td-status-disable': customer.status == 0}">
+              {{ customer.status == 0 ? "Inactivo" : "Activo" }}
+            </div>
+          </td>
+          <td>
+            
+            <!-- DROPDOWN -->
+            <div class="dropdown">
+              <button class="dropdown-button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                aria-expanded="false">
+                <i class="ph ph-dots-three-outline-vertical icon-menu"></i>
+              </button>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item edit-item" (click)="showCustomer(customer.rfc)">
+                  <i class="ph ph-note-pencil icon-text-ul"></i><p class="item-txt">Ver detalles</p>
+                </a>
+                <a *ngIf="customer.status == 0" class="dropdown-item enable-item"
+                  (click)="enableCustomer(customer.customer_id)">
+                  <i class="ph ph-check-circle icon-text-ul"></i><p class="item-txt"> Activar</p>
+                </a>
+                <a *ngIf="customer.status == 1" class="dropdown-item disable-item"
+                  (click)="disableCustomer(customer.customer_id)">
+                  <i class="ph ph-x-circle icon-text-ul"></i><p class="item-txt"> Desactivar</p>
+                </a>
+              </div>
+            </div>
+
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  
+    <!-- PAGINADOR -->
+    <div class="pagination-controls">
+      <pagination-controls 
+        (pageChange)="onPageChange($event)" 
+        previousLabel="Anterior"
+        nextLabel="Siguiente">
+      </pagination-controls>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL  -->
+<div class="modal fade" data-bs-backdrop="static" tabindex="-1" role="dialog" id="modalForm">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Registrar cliente</h5>
+        <button type="button" class="modal-close-button" data-bs-dismiss="modal" aria-label="Close">
+          <span class="modal-close-button-x">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+        <!-- FROMULARIO -->
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+          <div class="row">
+            <!-- NAME -->
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="name">Nombre <span class="color-red">*</span> </label>
+                <input type="text" class="form-control" formControlName="name" id="name"
+                  placeholder="Nombre del cliente..." autocomplete="name"
+                  [ngClass]="{'is-invalid': form.controls['name'].errors && submitted}">
+                <div *ngIf="form.controls['name'].errors && submitted">
+                  <small class="color-red">Favor de ingresar un nombre válido</small>
+                </div>
+              </div>
+            </div>
+
+            <!-- SURNAME -->
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="surname">Apellidos <span class="color-red">*</span> </label>
+                <input type="text" class="form-control" formControlName="surname" id="surname"
+                  placeholder="Apellidos del cliente..."
+                  [ngClass]="{'is-invalid': form.controls['surname'].errors && submitted}">
+                <div *ngIf="form.controls['surname'].errors && submitted">
+                  <small class="color-red">Favor de ingresar apellidos válidos</small>
+                </div>
+              </div>
+            </div>
+
+            <!-- RFC -->
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="rfc">RFC <span class="color-red">*</span> </label>
+                <input type="text" class="form-control" formControlName="rfc" id="rfc" placeholder="RFC del cliente..."
+                  [ngClass]="{'is-invalid': form.controls['rfc'].errors && submitted}">
+                <div *ngIf="form.controls['rfc'].errors && submitted">
+                  <small class="color-red">Favor de ingresar un rfc válido</small>
+                </div>
+              </div>
+            </div>
+
+            <!-- MAIL -->
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="mail">Correo electrónico <span class="color-red">*</span> </label>
+                <input type="text" class="form-control" formControlName="mail" id="mail"
+                  placeholder="Correo electrónico del cliente..."
+                  [ngClass]="{'is-invalid': form.controls['mail'].errors && submitted}">
+                <div *ngIf="form.controls['mail'].errors && submitted">
+                  <small class="color-red">Favor de ingresar un correo electrónico válido</small>
+                </div>
+              </div>
+            </div>
+
+            <!-- REGION -->
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="region_id">Región <span class="color-red">*</span> </label>
+                <select class="form-select" formControlName="region_id" id="region_id"
+                  [ngClass]="{'is-invalid': form.controls['region_id'].errors && submitted}">
+                  <option [ngValue]=null hidden>Selecciona una región...</option>
+                  <ng-container *ngFor="let region of regions">
+                    <option *ngIf="region.status == 1" [ngValue]="region.region_id">{{ region.region }}</option>
+                  </ng-container>
+                </select>
+                <div *ngIf="form.controls['region_id'].errors && submitted">
+                  <small class="color-red">Favor de seleccionar una región válida</small>
+                </div>
+              </div>
+            </div>
+
+            <!-- ADDRESS -->
+            <div class="form-group">
+              <label for="address">Dirección <span class="color-red">*</span> </label>
+              <textarea rows="2" class="form-control" formControlName="address" id="address"
+                placeholder="Dirección del cliente..." autocomplete="address-level1"
+                [ngClass]="{'is-invalid': form.controls['address'].errors && submitted}">
+                  </textarea>
+              <div *ngIf="form.controls['address'].errors && submitted">
+                <small class="color-red">Favor de ingresar una dirección válida</small>
+              </div>
+            </div>
+          </div>
+
+          <!-- GUARDAR -->
+          <div class="form-button">
+            <button type="submit" class="btn btn-primary btn-form">Guardar</button>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

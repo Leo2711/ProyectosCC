@@ -1,0 +1,371 @@
+/*  @author Mónica Miranda Mijangos 
+    @author Eduardo Leónel Sánchez Velasco 
+    Version: 3
+    Fecha: 11/12/2023 */
+
+/* Contenedor */    
+
+.card {
+    max-width: 1280px;
+    margin: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.card-body {
+    position: relative;
+    margin-bottom: 25px;
+    padding: 20px 20px 0 20px;
+    border-radius: 6px;
+    border-bottom: solid #e8e8e8;
+}
+
+.card-products {
+    padding-bottom: 50px;
+}
+
+.filtro {
+    padding-left: 40px;
+}
+
+.col-md-9 {
+    padding-right: 35px;
+}
+
+/* Titulo */
+
+h1 {
+    color: #78c2ad !important;
+    padding-bottom: 5px;
+}
+
+h5 {
+    margin-top: 10px;
+}
+
+/* Boton Agregar */
+
+.botonDer {
+    position: absolute;
+    right: 2%;
+    top: 25px;
+}
+
+.btn-new {
+    float: right;
+    width: 180px;
+    font-weight: 500;
+}
+
+/* Oplus  */
+
+.icon-text-button {
+    font-size: 25px;
+    display: table-cell;
+    padding-left: 2px;
+}
+
+.new-cat {
+    display: table-cell;
+    padding-left: 8px;
+    vertical-align: middle;
+    font-size: 16px;
+}
+
+/* Buscador */
+
+.input-group-text {
+    color: #8181A5;
+    vertical-align: middle;
+    font-size: 16px;
+}
+
+.input-group-text:hover {
+    color: black;
+}
+
+.btn-outline-secondary {
+    color: white;
+    background-color: #0d6efd;
+}
+
+.btn-outline-secondary:hover {
+    background-color: #0b5ed7;
+}
+
+/* Header */
+
+.id {
+    text-align: left;
+    font-weight: 480;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+/* Modal */
+
+.modal-content {
+    padding: 0px 8px;
+}
+
+.modal-header {
+    padding: 8px 16px !important;    
+}
+
+.modal-title {
+    font-weight: 500;
+}
+
+.form-group {
+    margin-bottom: 16px;
+}
+
+.form-button {
+    margin-top: 32px;
+    margin-bottom: 16px;
+    text-align: center;
+}
+
+.btn-form {
+    width: 100px;
+    font-weight: 500;
+    font-size: 16px;
+}
+
+.modal-close-button {
+    border: none;
+    background-color: white;
+}
+
+.modal-close-button-x {
+    color: #8181A5;
+    font-size: 32px;
+}
+
+/* Estatus */
+
+.td-status-enable {
+    width: 90px;
+    margin: auto;
+    background-color: #78c2ad;
+    color: white;
+    border-radius: 18px;
+    vertical-align: middle;
+    text-align: center;
+}
+
+.td-status-disable {
+    width: 90px;
+    margin: auto;
+    background-color: #f3969a;
+    color: white;
+    border-radius: 18px;
+    vertical-align: middle;
+    text-align: center;
+}
+
+/* Dropdown  */
+
+.dropdown-button {
+    border: none;
+    background-color: transparent;
+}
+
+.dropdown-button:hover {
+    border: none;
+    background-color: transparent;
+}
+
+/* Dots */
+
+.icon-text-ul {
+    font-size: 20px;
+    margin-right: 0;
+    display: table-cell;
+}
+
+.icon-menu {
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.icon-menu:hover {
+    color: blue;
+}
+
+.dropdown-item {
+    padding: 10px;
+}
+
+.item-txt {
+    display: table-cell;
+    padding-left: 10px;
+    vertical-align: middle;  
+    font-size: 14px;
+}
+
+/* Editar */
+
+.edit-item {
+    color: black !important;
+    cursor: pointer;
+    vertical-align: middle;
+    width: 100%;
+}
+
+.edit-item:hover, .selected {
+    color: black !important;
+    background-color: #cfe2ff;
+    width: 100%;
+}
+
+/* Activar */
+
+.enable-item {
+    color: #78c2ad !important;
+    cursor: pointer;
+}
+
+.enable-item:hover {
+    color: white !important;
+    background-color: #78c2ad;
+}
+
+/* Desactivar */
+
+.disable-item {
+    color: #f3969a !important;
+    cursor: pointer;
+}
+
+.disable-item:hover {
+    color: white !important;
+    background-color: #f3969a;
+}
+
+/* Pagination */
+
+.pagination-controls {
+    margin: 0;
+    position: absolute;
+    left: 50%;
+    -ms-transform: translateX(-50%);
+    transform: translateX(-50%);
+}
+
+/* Colores  */
+
+.color-red {
+    color: red;
+}
+
+/* CONTENT */
+
+a {
+    text-decoration: none !important
+}
+
+.container {
+    width: fit-content;
+    height: fit-content;
+    padding: 10px;
+}
+
+.cardp {
+    width: 280px;
+    height: auto;
+    position: relative;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 23px;    
+}
+
+.card-product-grid:hover {
+    -webkit-box-shadow: 0 4px 15px rgba(153, 153, 153, 0.3);
+    box-shadow: 0 4px 15px rgba(153, 153, 153, 0.3);
+    -webkit-transition: .3s;
+    transition: .3s
+}
+
+.card-product-grid .img-wrap {
+    border-radius: 0.2rem 0.2rem 0 0;
+    height: 250px
+}
+
+.card .img-wrap {
+    overflow: hidden
+}
+
+.card-lg .img-wrap {
+    height: 250px
+}
+
+.card-product-grid .img-wrap {
+    border-radius: 0.2rem 0.2rem 0 0;
+    height: 250px;
+    padding: 16px
+}
+
+[class*='card-product'] .img-wrap img {
+    height: 100%;
+    max-width: 100%;
+    width: auto;
+    display: inline-block;
+    -o-object-fit: cover;
+    object-fit: cover
+}
+
+.img-wrap {
+    text-align: center;
+    display: block
+}
+
+.card-product-grid .info-wrap {
+    overflow: hidden;
+    padding: 10px 20px
+}
+
+[class*='card-product'] a.title {
+    color: #212529;
+    display: block
+}
+
+.card-product-grid .bottom-wrap {
+    padding: 18px;
+    border-top: 1px solid #e4e4e4
+}
+
+.bottom-wrap-payment {
+    padding: 0px;
+    border-top: 1px solid #e4e4e4
+}
+
+.rated {
+    font-size: 14px;
+    color: #b3b4b6
+}
+
+.btn-warning {
+    background-color: #e4e4e4;
+    border: none;
+}
+
+.btn-warning:hover {
+    background-color: #d2d2d2;
+}
+
+.fa {
+    color: #FF5722
+}

@@ -1,0 +1,6 @@
+-------------------------------------------------------------------------------
+Test set: kas.concurrente.MesaTest
+-------------------------------------------------------------------------------
+Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 25.217 s - in kas.concurrente.MesaTest
+todosHanIntentadoComerFiltro  Time elapsed: 12.288 s
+todosComieronFiltro  Time elapsed: 12.924 s

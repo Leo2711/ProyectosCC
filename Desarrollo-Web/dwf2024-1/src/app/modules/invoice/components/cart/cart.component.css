@@ -1,0 +1,289 @@
+/*  @author Mónica Miranda Mijangos 
+    @author Eduardo Leónel Sánchez Velasco 
+    Version: 2
+    Fecha: 11/12/2023 */
+
+/* product */
+
+.card-body-product {
+    padding: 16px;
+}
+
+.product-image {
+    border-radius: 100%;
+    width: 220px;
+    max-height: 220px;
+}
+
+.edit-product {
+    color: blue;
+    cursor: pointer;
+    float: right;
+    margin-right: 16px;
+}
+
+.edit-product-image,
+.btn-return {
+    color: blue;
+    margin-bottom: 16px;
+}
+
+.col-md {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+/* Contenedor */
+
+.card {
+    max-width: 1280px;
+    margin: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.contenedeor {
+    padding-bottom: 40px;
+}
+
+.card-body {
+    position: relative;    
+    padding: 20px;    
+}
+
+/* Pagination */
+
+.pagination-controls {
+    margin: 0;
+    padding-top: 20px;
+    position: absolute;
+    left: 50%;
+    -ms-transform: translateX(-50%);
+    transform: translateX(-50%);
+}
+
+/* Titulo */
+
+h1 {
+    color: #78c2ad !important;
+    padding-bottom: 5px;
+    margin-bottom: 20px;
+}
+
+/* Boton Agregar */
+
+.botonDer {
+    position: absolute;
+    right: 2%;
+    top: 25px;
+}
+
+.btn-new {
+    float: right;
+    width: 300px;
+    font-weight: 500;
+    height: 46px;
+}
+
+/* Oplus  */
+
+.icon-text-button {
+    font-size: 25px;
+    display: table-cell;
+    padding-left: 2px;
+}
+
+.new-cat {
+    display: table-cell;
+    padding-left: 8px;
+    vertical-align: middle;
+    font-size: 16px;
+}
+
+/* Buscador */
+
+.input-group-text {
+    color: #8181A5;
+    vertical-align: middle;
+    font-size: 16px;
+}
+
+.input-group-text:hover {
+    color: black;
+}
+
+.btn-outline-secondary {
+    color: white;
+    background-color: #0d6efd;
+}
+
+.btn-outline-secondary:hover {
+    background-color: #0b5ed7;
+}
+
+
+/* Tabla */
+
+table:not(.id) {
+    text-align: center;
+}
+
+/* Header */
+
+.id {
+    text-align: right;
+    font-weight: bold;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+/* Modal */
+
+.modal-content {
+    padding: 0px 8px;
+}
+
+.modal-header {
+    padding: 8px 16px !important;
+}
+
+.modal-title {
+    font-weight: 500;
+}
+
+.form-group {
+    margin-bottom: 16px;
+}
+
+.form-button {
+    margin-top: 32px;
+    margin-bottom: 16px;
+    text-align: center;
+}
+
+.btn-form {
+    width: 100px;
+    font-weight: 500;
+    font-size: 16px;
+}
+
+.modal-close-button {
+    border: none;
+    background-color: white;
+}
+
+.modal-close-button-x {
+    color: #8181A5;
+    font-size: 32px;
+}
+
+/* Estatus */
+
+.td-status-enable {
+    width: 100px;
+    margin: auto;
+    background-color: #78c2ad;
+    color: white;
+    border-radius: 18px;
+    vertical-align: middle;
+}
+
+.td-status-disable {
+    width: 100px;
+    margin: auto;
+    background-color: #f3969a;
+    color: white;
+    border-radius: 18px;
+    vertical-align: middle;
+}
+
+/* Dropdown  */
+
+.dropdown-button {
+    border: none;
+    background-color: transparent;
+}
+
+.dropdown-button:hover {
+    border: none;
+    background-color: transparent;
+}
+
+/* Dots */
+
+.icon-text-ul {
+    font-size: 20px;
+    margin-right: 0;
+    display: table-cell;
+}
+
+.icon-menu {
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.icon-menu:hover {
+    color: blue;
+}
+
+.item-txt {
+    display: table-cell;
+    padding-left: 10px;
+    vertical-align: middle;
+    font-size: 18px;
+}
+
+/* Editar */
+
+.edit-item {
+    color: black !important;
+    cursor: pointer;
+    vertical-align: middle;
+}
+
+.edit-item:hover {
+    color: black !important;
+    background-color: #cfe2ff;
+}
+
+/* Activar */
+
+.enable-item {
+    color: #78c2ad !important;
+    cursor: pointer;
+}
+
+.enable-item:hover {
+    color: white !important;
+    background-color: #78c2ad;
+}
+
+/* Desactivar */
+
+.disable-item {
+    color: #f3969a !important;
+    cursor: pointer;
+}
+
+.disable-item:hover {
+    color: white !important;
+    background-color: #f3969a;
+}
+
+/* Pagination */
+
+.pagination-controls {
+    margin: 0;
+    position: absolute;
+    left: 50%;
+    -ms-transform: translateX(-50%);
+    transform: translateX(-50%);
+}
+
+/* Colores  */
+
+.color-red {
+    color: red;
+}

@@ -1,0 +1,90 @@
+<p>datos-unam works!</p>
+<!-- Begin Page Content -->
+<div class="container-fluid">
+    <!-- Page Heading -->
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+      <h1 class="h3 mb-0 text-gray-800">Consume API Module</h1>
+    </div>
+  
+    <!-- Content Row -->
+    <div class="row">
+      <div class="col-lg-12 mb-4">
+        <div class="card shadow mb-4">
+          <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Consume API (GET)</h6>
+          </div>
+          <div class="card-body">
+            <!-- Table title  -->
+            <div class="card-header">
+              <h5>Ingresa una API para consmir mediante el metodo GET:</h5>
+            </div>
+            <div>
+              <form [formGroup]="getRequestForm" (ngSubmit)="consumeGet()">
+                <div class="input-group">
+                  <input
+                    type="text"
+                    class="form-control bg-light border-0 small"
+                    placeholder="Search for..."
+                    aria-label="Search"
+                    aria-describedby="basic-addon2"
+                    formControlName="urlDestino"
+                    required="true"
+                  />
+                  <div class="input-group-append">
+                    <button class="btn btn-primary" type="submit">
+                      <i class="fas fa-search fa-sm"></i>
+                    </button>
+                  </div>
+                </div>
+                <div
+                  *ngIf="fg.urlDestino.touched && !urlValid"
+                  class="alert alert-danger"
+                >
+                  La URL es invalida
+                </div>
+                <div class="card-body">
+                  {{ contenidoGet | json }}
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+        <div class="card shadow mb-4">
+          <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Consume API (POST)</h6>
+          </div>
+          <div class="card-body">
+            <!-- Table title  -->
+            <div class="card-header">
+              <h5>Consume API (httpbin) para obtener echo de contenido POST:</h5>
+            </div>
+            <div class="card-body">
+              <form [formGroup]="postRequestForm" (ngSubmit)="consumePost()">
+                <div class="input-group">
+                  <input
+                    type="textarea"
+                    class="form-control bg-light border-0 small"
+                    placeholder="Ingresa el contenido de la peticion (json)..."
+                    aria-label="JSON Input"
+                    aria-describedby="basic-addon2"
+                    formControlName="jsonIn"
+                    required="true"
+                    style="height: 150px;"
+                  />
+                </div>
+                <div>
+                  <button class="btn btn-secondary" type="submit">
+                    Consume <strong>(httpbin)</strong>
+                  </button>
+                </div>
+              </form>
+              <div class="card-body">
+                {{ contenidoPost | json }}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

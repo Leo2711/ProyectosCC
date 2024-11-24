@@ -1,0 +1,41 @@
+<div class="card">
+    <div class="col-md-12">
+        <div class="invoice">
+            <!-- begin invoice-company -->
+            <h1>
+                Listado de Facturas
+            </h1>
+            <!-- end invoice-company -->
+            <!-- begin invoice-header -->
+            <div class="row">
+                <div class="col-md-12">
+                    <div *ngFor="let invoice of invoices | paginate: { itemsPerPage: 10, currentPage: currentPage, totalItems: invoices.length}"
+                        class="invoice-header d-flex justify-content-between align-items-center">
+                        <div class="invoice-date">
+                            <div class="date text-inverse m-t-5">
+                                TOTAL <span class="f-w-600"> {{ invoice.total | currency: 'MXN' }} </span>
+                            </div>
+                            <div class="invoice-detail">
+                                {{ invoice.created_at | date: 'MMMM dd, yyyy' }}
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="pull-right hidden-print">
+                                <a (click)="showInvoice(invoice.invoice_id)"
+                                    class="btn btn-sm btn-white m-b-10 p-l-5"><i
+                                        class="fa fa-file t-plus-1 text-danger fa-fw fa-lg"></i> Ver Factura</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- PAGINADOR -->
+                    <div class="pagination-controls">
+                        <pagination-controls (pageChange)="onPageChange($event)" previousLabel="Anterior"
+                            nextLabel="Siguiente">
+                        </pagination-controls>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

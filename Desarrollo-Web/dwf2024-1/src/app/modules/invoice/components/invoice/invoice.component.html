@@ -1,0 +1,124 @@
+<div class="container">
+   <div class="col-md-12">
+      <div class="invoice">
+         <!-- begin invoice-company -->
+         <div class="row">
+            <div class="col-md">
+               <span class="btn-return cursor-pointer" (click)="redirect(['invoice'])">
+                  <i class="ph ph-arrow-circle-left icon-text-button"></i>
+                  <p class="item-txt"> Regresar </p>
+               </span>
+            </div>
+            <div class="col-md">
+               <span class="pull-right hidden-print">
+                  <button href="javascript:;" onclick="window.print()" class="botonDer btn-new"><i
+                        class="fa fa-print t-plus-1 fa-fw fa-lg"></i> Print</button>
+               </span>
+            </div>
+         </div>
+         <!-- end invoice-company -->
+         <!-- begin invoice-header -->
+         <div class="invoice-header">
+            <div class="invoice-from">
+               <small>de</small>
+               <address class="m-t-5 m-b-5">
+                  <strong class="text-inverse"> {{ customer.name }} {{ customer.surname}} </strong><br>
+                  {{ customer.address }} <br>
+                  {{ customer.rfc }} <br>
+                  {{ customer.mail }}
+               </address>
+            </div>
+            <div class="invoice-to">
+               <small>para</small>
+               <address class="m-t-5 m-b-5">
+                  <strong class="text-inverse">DWF2024-1</strong><br>                  
+                  Investigación Científica, C.U., Coyoacán,<br>
+                  Ciudad de México, CDMX, 04510<br>
+                  (+52) 55 5622 4992<br>
+                  comunicacion&commat;ciencias.unam.mx
+               </address>
+            </div>
+            <div class="invoice-date">               
+               <div class="date text-inverse m-t-5"> {{ invoice.created_at | date: 'MMMM dd, yyyy' }} </div>
+               <div class="invoice-detail">                  
+                  Compra de Productos
+               </div>
+            </div>
+         </div>
+         <!-- end invoice-header -->
+         <!-- begin invoice-content -->
+         <div class="invoice-content">
+            <!-- begin table-responsive -->
+            <div class="table-responsive">
+               <table class="table table-invoice">
+                  <thead>
+                     <tr>
+                        <th>PRODUCTO</th>
+                        <th class="text-center" width="15%">GTIN</th>
+                        <th class="text-center" width="15%">PRECIO</th>
+                        <th class="text-center" width="10%">CANTIDAD</th>
+                        <th class="text-right" width="20%">SUBTOTAL</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     <tr *ngFor="let item of items; let i = index" >
+                        <td>
+                           <ng-container *ngIf="products && products[i]">
+                             <span class="text-inverse">{{ products[i].product }}</span><br>
+                           </ng-container>
+                         </td>
+                        <td class="text-center"> {{ item.gtin }} </td>
+                        <td class="text-center">{{item.unit_price | currency: 'MXN'}}</td>
+                        <td class="text-center">{{item.quantity}}</td>
+                        <td class="text-right">{{item.subtotal | currency: 'MXN'}}</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </div>
+            <!-- end table-responsive -->
+            <!-- begin invoice-price -->
+            <div class="invoice-price">
+               <div class="invoice-price-left">
+                  <div class="invoice-price-row">
+                     <div class="sub-price">
+                        <small>SUBTOTAL</small>
+                        <span class="text-inverse"> {{ invoice.subtotal | currency: 'MXN' }} </span>
+                     </div>
+                     <div class="sub-price">
+                        <i class="fa fa-plus text-muted"></i>
+                     </div>
+                     <div class="sub-price">
+                        <small>ENVIO</small>
+                        <span class="text-inverse"> {{ invoice.taxes | currency: 'MXN' }} </span>
+                     </div>
+                  </div>
+               </div>
+               <div class="invoice-price-right">
+                  <small>TOTAL</small> <span class="f-w-600"> {{ invoice.total | currency: 'MXN' }} </span>
+               </div>
+            </div>
+            <!-- end invoice-price -->
+         </div>
+         <!-- end invoice-content -->
+         <!-- begin invoice-note -->
+         <div class="invoice-note">
+            * Hacer todos los pagos a nombre de DWF2024-1. <br>
+            * El pago debe realizarse dentro de los próximos 30 días. <br>
+            * Si tiene alguna pregunta relacionada con esta factura, contáctenos.
+         </div>
+         <!-- end invoice-note -->
+         <!-- begin invoice-footer -->
+         <div class="invoice-footer">
+            <p class="text-center m-b-5 f-w-600">
+               GRACIAS POR TU COMPRA
+            </p>
+            <p class="text-center">
+               <span class="m-r-10"><i class="fa fa-fw fa-lg fa-globe"></i> http://www.fciencias.unam.mx/ </span>
+               <span class="m-r-10"><i class="fa fa-fw fa-lg fa-phone-volume"></i> (+52) 55 5622 4992 </span>
+               <span class="m-r-10"><i class="fa fa-fw fa-lg fa-envelope"></i> comunicacion&commat;ciencias.unam.mx</span>
+            </p>
+         </div>
+         <!-- end invoice-footer -->
+      </div>
+   </div>
+</div>

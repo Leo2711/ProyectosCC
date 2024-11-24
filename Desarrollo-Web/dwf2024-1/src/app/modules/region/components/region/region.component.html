@@ -1,0 +1,167 @@
+<!-- CARD -->
+<div class="card">
+  <div class="card-body">
+    <!-- TITULO VISTA -->
+    <div class="title">
+      <h1> Listado de Regiones </h1>
+    </div>
+
+    <!-- BOTON AGREGAR -->
+    <div class="botonDer">
+      <button type="button" class="btn btn-primary btn-new" (click)="showModalForm()">
+        <i class="ph ph-plus-circle icon-text-button"></i>
+        <p class="new-cat"> Nueva región </p>
+      </button>
+    </div>
+
+    <!-- BUSCADOR -->
+    <div class="input-group mb-3">
+      <input #categoryIdInput type="number" class="form-control" placeholder="Buscar por id ..." id="Buscar"
+        aria-describedby="basic-addon2">
+      <span (click)="cleanSearch(categoryIdInput)" class="input-group-text">&times;</span>
+      <div class="input-group-append cursor-pointer">
+        <button (click)="getRegion(categoryIdInput.value)" class="btn btn-outline-secondary"
+          type="button">Buscar</button>
+      </div>
+    </div>
+
+    <!-- TABLA REGIONES -->
+    <table class="table">
+      <caption>
+        Regiones
+      </caption>
+
+      <!-- ENCABEZADO -->
+      <thead>
+        <tr class="table-primary">
+          <th scope="col" class="id">Id <i [appSort]="regions" data-order="asc" data-name="region_id"
+              class="cursor-pointer ph-fill ph-caret-up-down"></i> </th>
+          <th scope="col">Código <i [appSort]="regions" data-order="asc" data-name="code"
+              class="cursor-pointer ph-fill ph-caret-up-down"></i> </th>
+          <th scope="col">Región <i [appSort]="regions" data-order="asc" data-name="region"
+              class="cursor-pointer ph-fill ph-caret-up-down"></i> </th>
+          <th scope="col">Estatus
+            <i *ngIf="sortStatus" [appSort]="regions" data-order="asc" data-name="status"
+              class="cursor-pointer ph-fill ph-caret-up-down"></i>
+            <button class="dropdown-button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true"
+              aria-expanded="false">
+              <i class="ph-fill ph-caret-down"></i>
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <a class="dropdown-item edit-item" (click)="getRegions()">
+                <i class="ph ph-eye icon-text-ul"></i>
+                <p class="item-txt">Todo</p>
+              </a>
+              <a class="dropdown-item edit-item" (click)="getActiveRegions()">
+                <i class="ph ph-check-circle icon-text-ul"></i>
+                <p class="item-txt">Activo</p>
+              </a>
+              <a class="dropdown-item edit-item" (click)="getInactiveRegions()">
+                <i class="ph ph-x-circle icon-text-ul"></i>
+                <p class="item-txt">Inactivo</p>
+              </a>
+            </div>
+          </th>
+          <th scope="col">Más</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          *ngFor="let region of regions | paginate: { itemsPerPage: 10, currentPage: currentPage, totalItems: regions.length}">
+          <td class="id">{{ region.region_id }}</td>
+          <td>{{ region.code }}</td>
+          <td>{{ region.region }}</td>
+          <td>
+            <div class="td-status"
+              [ngClass]="{'td-status-enable': region.status == 1, 'td-status-disable': region.status == 0}">
+              {{ region.status == 0 ? "Inactivo" : "Activo" }}
+            </div>
+          </td>
+          <td>
+
+            <!-- DROPDOWN -->
+            <div class="dropdown">
+              <button class="dropdown-button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                aria-expanded="false">
+                <i class="ph ph-dots-three-outline-vertical icon-menu"></i>
+              </button>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item edit-item" (click)="updateRegion(region)">
+                  <i class="ph ph-note-pencil icon-text-ul"></i>
+                  <p class="item-txt">Editar</p>
+                </a>
+                <a *ngIf="region.status == 0" class="dropdown-item enable-item"
+                  (click)="enableRegion(region.region_id)">
+                  <i class="ph ph-check-circle icon-text-ul"></i>
+                  <p class="item-txt">Activar</p>
+                </a>
+                <a *ngIf="region.status == 1" class="dropdown-item disable-item"
+                  (click)="disableRegion(region.region_id)">
+                  <i class="ph ph-x-circle icon-text-ul"></i>
+                  <p class="item-txt">Desactivar</p>
+                </a>
+              </div>
+            </div>
+
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- PAGINADOR -->
+    <div class="pagination-controls">
+      <pagination-controls (pageChange)="onPageChange($event)" previousLabel="Anterior" nextLabel="Siguiente">
+      </pagination-controls>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL  -->
+
+<div class="modal fade" id="modalForm" tabindex="-1" role="dialog" data-bs-backdrop="static">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">{{ regionUpdated == 0? "Registrar": "Actualizar" }} región</h5>
+        <button type="button" class="modal-close-button" data-bs-dismiss="modal" aria-label="Close">
+          <span class="modal-close-button-x">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+        <!-- FORMULARIO -->
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+          <!-- REGION  -->
+          <div class="form-group">
+            <label for="region">Región <span class="color-red">*</span> </label>
+            <input type="text" class="form-control" formControlName="region" id="region"
+              placeholder="Nombre de la región..." autocomplete="name"
+              [ngClass]="{'is-invalid': form.controls['region'].errors && submitted}">
+            <div *ngIf="form.controls['region'].errors && submitted">
+              <small class="color-red">Favor de ingresar una región válida</small>
+            </div>
+          </div>
+
+          <!-- CODIGO  -->
+          <div class="form-group">
+            <label for="code">Código <span class="color-red">*</span> </label>
+            <input type="text" class="form-control" formControlName="code" id="code"
+              placeholder="Código de la región..."
+              [ngClass]="{'is-invalid': form.controls['code'].errors && submitted}">
+            <div *ngIf="form.controls['code'].errors && submitted">
+              <small class="color-red">Favor de ingresar un código de región válido</small>
+            </div>
+          </div>
+
+          <!-- GUARDAR  -->
+          <div class="form-button">
+            <button type="submit" class="btn btn-primary btn-form">Guardar</button>
+          </div>
+
+        </form>
+
+      </div>
+    </div>
+  </div>
+</div>
