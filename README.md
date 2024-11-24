@@ -15,7 +15,7 @@
 ### 🔍 Siamese Neural Network
 - **Descripción:** Implementación de una red neuronal siamés para el reconocimiento facial, comparando dos imágenes y determinando si pertenecen a la misma persona.
 - **Tecnologías:** Python, PyTorch, Redes Neuronales Convolucionales (CNN).
-- **[Ver más](link-a-proyecto)**
+- **[Ver más](https://github.com/Leo2711/ProyectosNN/tree/main/SiameseNN)**
 
 ---
 
@@ -26,7 +26,7 @@
   - Restauración de imágenes dañadas.
   - Pseudocolor para mejorar la visualización.
 - **Tecnologías:** Python, OpenCV, NumPy.
-- **[Ver más](link-a-proyecto)**
+- **[Ver más](https://github.com/Leo2711/ProyectosNN/tree/main/Proyectos%20Procesamiento%20Img)**
 
 ---
 
@@ -35,19 +35,20 @@
   - Gestión de un carrito de compras.
   - Generación automática de facturas basadas en productos añadidos al carrito.
 - **Tecnologías:** HTML, CSS, JavaScript, Node.js, sql.
-- **[Ver más](link-a-proyecto)**
+- **[Ver más](https://github.com/Leo2711/ProyectosNN/tree/main/Desarrollo-Web)**
 
 ---
 
 ### ⚙️ Computación Concurrente
 - **Descripción:** Trabajos realizados para aprender y aplicar principios de **computación concurrente**, incluyendo el manejo de procesos y sincronización de hilos en diversos escenarios.
 - **Tecnologías:** Java, conceptos de programación paralela.
-- **[Ver más](link-a-proyecto)**
+- **[Ver más](https://github.com/Leo2711/ProyectosNN/tree/main/ComputoConcurrente)**
 
 ---
 
 ## 📚 Sobre Mí
-Soy estudiante de **Ciencias de la Computación** en la **UNAM**, apasionado por la tecnología, el aprendizaje continuo y el desarrollo de soluciones creativas a problemas complejos.
+Soy estudiante de **Ciencias de la Computación** en la **UNAM**, apasionado por la tecnología, el aprendizaje continuo y el desarrollo de soluciones creativas a problemas complejos. 
+- **[Ver más](https://github.com/Leo2711)**
 
 ---
 
